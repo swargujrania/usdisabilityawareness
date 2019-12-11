@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+​
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://unpkg.com/d3-hexgrid"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.12.0/d3.min.js"></script>
+  <script src="./d3-tip.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="./main.js"></script>
+  <script src="./sideview.js"></script>
+  <script src="./WheelFinal/Wheel/wheel-employment/empMain.js"></script>
+  <script src="./WheelFinal/Wheel/wheel-cow/cowMain.js"></script>
+  <script src="./Bucket/EducationBucket/main.js"></script>
+  <script src="./Bucket/PovertyBucket/main.js"></script>
+  <script src="./Bucket/EarningsBucket/main.js"></script>
+  <script src="./scroll.js"></script>
+  <script src="./main2.js"></script>
+  <script src="https://d3js.org/topojson.v2.min.js"></script>
+  <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+  <title>InfoViz</title>
+</head>
+
+<body onload="readyFunction()">
+  <div class="container">
+    <div class="title-row">
+      <div class="col-lg-8">
+        <h1 class="title">Visualizing Data about People with Special Needs</h1>
+      </div>
+    </div>
+    <div class="content-card-row" id="first-card">
+      <div class="content-card">
+        <p class="content">The <a href="https://www.ada.gov/ada_intro.htm">ADA</a> defines a person with a disability as
+          a person who has a physical or
+          mental impairment that substantially limits one or more major life activity. This includes people who have a
+          record of such an impairment, even if they do not currently have a disability.
+        </p>
+      </div>
+    </div>
+    <div class="content-card-row">
+      <div class="content-card">
+        <p class="content">What does it really mean for a person when one or more of their major life activities have
+          been impaired?
+          How is their life different from anyone else?
+          This is what this visualization hopes to illustrate.</p>
+      </div>
+    </div>
+    <div class="content-card-row">
+      <div class="content-card">
+        <p class="content">In the visualization below, each hexagon represents 50,000 people. The darker hexagons
+          represent people with disabilities and the lighter ones are those without.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="geoviz-row">
+    ​<div id="viz1">
+    </div>
+    ​<div id="viz2">
+    </div>
+  </div>
+  <div class="container" class="after-viz">
+    <div class="content-card-row">
+      <div class="content-card">
+        <p class="content">This is what the US would look like if it was scaled by the population density of each state.
+          Over time, as the population of the country increased, so did the number of people with disabilities.
+        </p>
+      </div>
+    </div>
+    <div class="content-card-row">
+      <div class="content-card">
+        <p class="content">States with a higher population generally have higher population of people with disability as
+          well. Click on one or multiple states to look at their disability prevalence over the years and compare. </p>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+  </div>
+  <div class="container">
+    <div class="title-row" id="age">
+      <div class="col-lg-8">
+        <h1 class="title">Visualizing Age by Disability type</h1>
+      </div>
+    </div>
+    <div class="content-card-row" id="first-card1">
+      <div class="content-card">
+        <p class="content">Overall, disabilities of all types increase as people get older. Ambulatory disabilities, in
+          particular, drastically increase in prevalence in adults over 35 years of age. Could this just be a result of
+          aging?
+        </p>
+      </div>
+    </div>
+  </div>
+  ​<div id="main">
+    <div style="text-align:center;">
+      <svg id="age-svg" width="945" height="800" style="border: 1px solid #777;">
+      </svg>
+    </div>
+  </div>
+  <div class="container">
+    <div class="content-card-row">
+      <div class="content-card">
+        <p class="content">On the other side of the spectrum, prevalence of cognitive difficulties, which are the most
+          common disability among children, does not change much as people age.
+        </p>
+      </div>
+    </div>
+    <div class="content-card-row">
+      <div class="content-card" id="age-last-card">
+        <p class="content">In terms of number of people, prevalence of disabilities is comparable across age groups. But
+          what if we were to look at the prevalence of disability as a proportion of all the people in each age group?
+        </p>
+      </div>
+    </div>
+    <div class="content-card-row">
+      <div class="content-card" id="bar-chart-trigger">
+        <p class="content">This is everyone in the US. Prevalence of disabilities across age groups doesn’t seem
+          comparable anymore.
+        </p>
+      </div>
+    </div>
+    <div class="content-card-row">
+      <div class="content-card">
+        <p class="content">In fact, the percentage of people with disabilities increases as age increases, with more
+          than half of all people above 75 years old having some disability.
+        </p>
+      </div>
+    </div>
+    <div class="content-card-row">
+      <div class="content-card">
+        <p class="content">Click on any of the hexagons to compare that disability type between the age groups.
+        </p>
+      </div>
+    </div>
+    <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+    <br /><br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+    <br />
+  </div>
+  <div class="container">
+    <div class="title-row">
+      <div class="col-lg-8">
+        <h1 class="title" id="eco-data-title">Visualizing Economic Data about People with Disability</h1>
+      </div>
+    </div>
+    <div class="content-card-row" id="bucket1">
+      <div class="content-card">
+        <p class="content">
+          Our understanding of the landscape of disability in the US would be incomplete without taking a glimpse into
+          the everyday life of people with disabilities.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="earningBucketSection">
+  </div>
+  <div class="container">
+    <div class="content-card-row" id="bucket2">
+      <div class="content-card">
+        <p class="content">
+          Does having a disability affect how much someone might earn? At first glance, there are no significant
+          differences in the number of people with disability in each income bracket.
+        </p>
+      </div>
+    </div>
+    <div class="content-card-row" id="bucket3">
+      <div class="content-card">
+        <p class="content">
+          While nearly 20% of the people in the lowest income bracket have disabilities, they only form 4.25% of the
+          highest income bracket.
+        </p>
+      </div>
+    </div>
+    <div class="content-card-row" id="bucket4">
+      <div class="content-card">
+        <p class="content">
+          Click through the hexagons to see state-wise details. Currently, you're seeing the data for <select
+            id="er_stateDropdown">
+          </select>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="content-card-row" id="bucketP">
+      <div class="content-card">
+        <p class="content">
+          This trend is consistent when we look at poverty levels. 205 million people are over 150% of the poverty level
+          (they don’t even fit on the screen!). Only 12.5% of these are people with disabilities, while double that
+          number are under the poverty level.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="povertyBucketSection">
+  </div>
+  <div class="container">
+    <div class="content-card-row">
+      <div class="content-card">
+        <p class="content">
+          What might cause such a disparity? Click through the hexagons to see state-wise details. Currently, you're
+          seeing the data for <select id="p_stateDropdown">
+          </select>
+        </p>
+      </div>
+    </div>
+    <div class="content-card-row" id="bucketEdu">
+      <div class="content-card">
+        <p class="content">
+          What about education?
+          </select>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="educationBucketSection"></div>
+  <div class="container">
+    <div class="content-card-row">
+      <div class="content-card">
+        <p class="content">
+          Tracing this trend further back, we see that fewer people with disabilities have completed higher levels of
+          education. About one quarter of the people who have graduated high school, about 20% of those who’ve attended
+          some college, and less than 10% of the people with a bachelor’s degree or higher have disabilities.
+        </p>
+      </div>
+    </div>
+    <div class="content-card-row" id="bucketEdu">
+      <div class="content-card">
+        <p class="content">
+          Is this because of inaccessibility of intolerance?
+          Click through the hexagons to see state-wise details. Currently, you're seeing data for: <select
+            id="ed_stateDropdown">
+          </select>
+          </select>
+        </p>
+      </div>
+    </div>
+    <div class="content-card-row" id="end-bucket">
+      <div class="content-card">
+        <p class="content">
+          How does this translate to the type of jobs that people with disabilities hold?
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container" id="start-wheel">
+    <div class="content-card-row">
+      <div class="content-card">
+        <p class="content">
+          In almost all industries, 11-16% of the employees are people with disabilities.
+
+          People with disabilities form a smaller portion, about 9%, of the agriculture, forestry, fishing and mining
+          industry, which could be because of the physically intensive nature of the work involved.
+
+          However, the lowest number of people with disability actually work in the information industry, accounting for
+          only
+          5%of the workforce.
+
+          Click to see the state-wise distribution. Current selection shows: <select id="stateDropdown1"></select>
+
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="vis-container1">
+    <div class="vis">
+      <svg></svg>
+    </div>
+  </div>
+  <div class="container" id="start-wheel2">
+    <div class="content-card-row">
+      <div class="content-card">
+        <p class="content">
+          The lowest representation of people with disabilities is in the government sector, with only around 2% in
+          state and federal governments. In fact, the highest representation is in the private sector, which only stands
+          at 5%.
+
+          Additionally, this data only represents those people who are employed and overall, less than 5% of them are
+          disabled. However, 13% of the population of the US are disabled.
+
+
+          Click to see the state-wise distribution.<select id="stateDropdown2"></select>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="vis-container2">
+    <div class="vis">
+      <svg></svg>
+    </div>
+  </div>
+  <div class="container">
+    <div class="title-row" style="margin-bottom: 300px;">
+      <div class="col-lg-8">
+        <h1 class="title">This visualization was an attempt to provide you a view into the lives of people with special
+          needs. We hope you have a chance to sit back and introspect about where we stand.
+        </h1>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
