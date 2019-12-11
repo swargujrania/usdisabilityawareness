@@ -19,7 +19,6 @@ var spokes_6;
 var totalNumber_6 = [];
 
 empMainStart = () => {
-
   var svgWidth = 1000;
   var svgHeight = 1000;
   var svg = d3.select('#vis-container1')

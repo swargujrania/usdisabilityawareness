@@ -1,4 +1,8 @@
 let readyFunction = () => {
+
+  cowMainStart();
+  empMainStart();
+
   let controller = new ScrollMagic.Controller();
 
   // let cards = document.getElementsByClassName('content-card-row');
@@ -160,16 +164,37 @@ let readyFunction = () => {
   endBucket.setClassToggle('#educationBucketSection', 'fade-out');
 
   let startSun = new ScrollMagic.Scene({
-      triggerElement: '#start-wheel',
-      triggerHook: 0.5
+      triggerElement: '#vis-container1',
+      triggerHook: 1
     })
     // .addIndicators()
     .addTo(controller);
 
   startSun.on('start', () => empMainStart());
+
+  let stopText = new ScrollMagic.Scene({
+      triggerElement: '#vis-container1',
+      triggerHook: 0.1,
+      duration: '90%'
+    })
+    // .addIndicators()
+    .addTo(controller);
+
+  stopText.setClassToggle('#start-wheel', 'fade-in');
+
+  let stopText2 = new ScrollMagic.Scene({
+      triggerElement: '#vis-container2',
+      triggerHook: 0.1,
+      duration: '90%'
+    })
+    // .addIndicators()
+    .addTo(controller);
+
+  stopText2.setClassToggle('#start-wheel2', 'fade-in');
+
   let startSun2 = new ScrollMagic.Scene({
-      triggerElement: '#start-wheel2',
-      triggerHook: 0.5
+      triggerElement: '#vis-container2',
+      triggerHook: 1
     })
     // .addIndicators()
     .addTo(controller);
@@ -178,4 +203,6 @@ let readyFunction = () => {
     console.log('in');
     cowMainStart()
   });
+
+
 }

@@ -43,7 +43,8 @@ pStart = () => {
           .attr('y', bucket.y + 30)
           .style('text-anchor', 'middle')
           .style('stroke', '#798D8F')
-          .attr("font-family", "Avenir Next");
+          .attr("font-family", "Avenir Next")
+          .attr('font-size', '11px');;
 
         d3.json('./Bucket/PovertyBucket/units.json').then(p_units => {
           // visual elements
@@ -193,7 +194,7 @@ function p_drawPieCharts(p_buckets, p_svg) {
             .attr("opacity", 0)
             .attr('transform', `translate(${ centerX }, ${ centerY })`)
             .attr("font-family", "Avenir Next")
-            .attr("font-size", 13)
+            .attr("font-size", 11)
             .attr("fill", '#798D8F')
             .attr("text-anchor", "middle")
             .selectAll("text")
@@ -210,6 +211,7 @@ function p_drawPieCharts(p_buckets, p_svg) {
             .call(text => text.append("tspan")
               .attr("y", "-0.4em")
               .attr("font-weight", "500")
+              .attr('font-size', '11px')
               .text(d => {
                 return d.data.key.endsWith('WithDis') ? 'With Disability' : 'Without Disability';
               }))

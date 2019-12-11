@@ -43,7 +43,7 @@ eduStart = () => {
           .style('text-anchor', 'middle')
           .style('stroke', '#798D8F')
           .attr('font-family', 'Avenir Next')
-          .attr('font-size', '13');
+          .attr('font-size', '11px');
 
         d3.json('./Bucket/EducationBucket/units.json').then(ed_units => {
           // visual elements
@@ -191,7 +191,7 @@ function ed_drawPieCharts(ed_buckets, ed_svg) {
             .attr("opacity", 0)
             .attr('transform', `translate(${ centerX }, ${ centerY })`)
             .attr("font-family", "Avenir Next")
-            .attr("font-size", 13)
+            .attr("font-size", 11)
             .attr("fill", '#798D8F')
             .attr("text-anchor", "middle")
             .selectAll("text")

@@ -363,6 +363,12 @@ d3.csv('./data/linedata.csv').then(usa => {
           .duration(500)
           .style("opacity", 0);
       });
+
+    sideview
+      .append('text')
+      .attr('class', 'state-label')
+      .text('USA')
+      .attr('transform', d => `translate(${xScale(2019)}, ${yScale(usaData[4].with_a_disability)})`);
   });
 });
 
@@ -521,6 +527,12 @@ changeView = (selectedStates) => {
           .duration(500)
           .style("opacity", 0);
       });
+
+    sideview
+      .append('text')
+      .attr('class', 'state-label')
+      .text('USA')
+      .attr('transform', d => `translate(${xScale(2019)}, ${yScale(usaData[4].with_a_disability)})`);
   }
 
   yAxisLine.call(yAxis)

@@ -39,7 +39,8 @@ erStart = () => {
           .attr('y', bucket.y + 30)
           .style('text-anchor', 'middle')
           .style('stroke', '#798D8F')
-          .attr('font-family', 'Avenir Next');
+          .attr('font-family', 'Avenir Next')
+          .attr('font-size', '11px');
 
         d3.json('./Bucket/EarningsBucket/units.json').then(er_units => {
           // visual elements
@@ -186,9 +187,9 @@ function er_drawPieCharts(er_buckets) {
                     .attr("opacity", 0)
                     .attr('transform', `translate(${ centerX }, ${ centerY })`)
                     .attr("font-family", "Avenir Next")
-                    .attr("font-size", 13)
+                    .attr('text-anchor', 'middle')
+                    .attr("font-size", 12)
                     .attr("fill", '#798D8F')
-                    .attr("text-anchor", "middle")
                     .selectAll("text")
                     .data(er_arcs[i])
                     .join("text")
